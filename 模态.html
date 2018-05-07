@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style lang="css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            height: 100vh
+        }
+
+        .content-btn {
+            display: inline-block;
+            margin: 8px;
+            padding: 2px 4px;
+            border: 1px grey solid;
+            cursor: pointer;
+        }
+        .content-btn:hover{
+            background: #ddd;
+        }
+        .mod {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(204, 204, 204, 0.5);
+            display: none;
+        }
+
+        .mod .mod-container {
+            position: absolute;
+            width: 400px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 5px;
+        }
+
+        .mod-container .mod-head {
+            border-bottom: 1px solid grey;
+            padding: 8px 8px;
+        }
+
+        .mod-head .btn-close {
+            float: right;
+            cursor: pointer;
+        }
+
+        .mod-content {
+            border-bottom: 1px solid grey;
+            padding: 8px 8px;
+        }
+
+        .mod-content p {
+            padding: 4px 0;
+        }
+
+        .mod-footer {
+            padding: 8px 8px;
+        }
+
+        .mod-footer .btn {
+            float: right;
+            cursor: pointer;
+        }
+
+        .mod-footer .btn2 {
+            margin-right: 4px;
+        }
+
+        .clearfix:after {
+            clear: both;
+            content: '';
+            display: block;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content clearfix">
+            <span class='content-btn'>点我</span>
+        </div>
+        <div class="mod btn-close">
+            <div class="mod-container">
+                <div class='mod-head'>
+                    <span class="btn-close">x</span>
+                    <h3>我是标题</h3>
+                </div>
+                <div class='mod-content'>
+                    <p>我是内容1</p>
+                    <p>我是内容2</p>
+                    <p>我是内容3</p>
+                </div>
+                <div class="mod-footer clearfix">
+                    <span class="btn btn-close">取消</span>
+                    <span class='btn btn2'>确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let openBtn = document.querySelector('.content-btn');
+        let showMod = document.querySelector('.mod');
+        let closeMod = document.querySelectorAll('.btn-close');
+        let stopMod = document.querySelector('.mod-container');
+        openBtn.addEventListener('click', function () {
+            showMod.style.display = 'block';
+        }, false);
+        stopMod.addEventListener('click',function(e){
+            e.stopPropagation();
+        })
+        for (let i = 0; i < closeMod.length; i++) {
+            closeMod[i].addEventListener('click', function () {
+                showMod.style.display = 'none';
+            }, false)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ct {
+            border: 1px grey solid;
+            width: 422px;
+        }
+
+        .tab>li {
+            display: inline-block;
+            border-bottom: 1px grey solid;
+            border-right: 1px grey solid;
+            float: left;
+            width: 140px;
+            text-align: center;
+        }
+
+        .tab>li:last-child {
+            border-right: none;
+        }
+
+        .clearfix::before {
+            display: none;
+            content: '';
+            clear: both
+        }
+
+        .preview>li {
+            display: none;
+            height: 200px;
+        }
+
+        .tab .active {
+            background: grey;
+        }
+
+        .preview .active1 {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ct">
+        <ul class='tab clearfix'>
+            <li class='active'>tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <ul class="preview">
+            <li class="active1">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <script>
+        let tab = document.querySelector('.tab');
+        let tabArr = document.querySelectorAll('.tab>li')
+        let content = document.querySelectorAll('.preview>li');
+        tab.addEventListener('click', function (e) {
+            if (e.target.tagName.toLowerCase() === 'li') {
+                for (let i = 0; i < tabArr.length; i++) {
+                    tabArr[i].classList.remove('active');
+                }
+                e.target.classList.add('active');
+                let index = [].indexOf.call(tabArr, e.target);
+                for (let i = 0; i < content.length; i++) {
+                    content[i].classList.remove('active1');
+                }
+                content[index].classList.add('active1')
+            }
+        })
+    </script>
+</body>
+
+</html>
